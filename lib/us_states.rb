@@ -12,7 +12,11 @@ module ActionView
         end
 
         if us_state_options[:include_blank]
-          state_options += "<option value=\"\">--</option>\n"
+          if us_state_options[:include_blank].class == TrueClass
+            state_options += "<option value=\"\">--</option>\n"
+          else
+            state_options += "<option value=\"\">[#{us_state_options[:include_blank].to_s}]</option>\n"
+          end
         end
 
         if us_state_options[:priority]
